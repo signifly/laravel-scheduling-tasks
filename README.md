@@ -20,7 +20,39 @@ In order to make a new task, use the command that comes with the package:
 $ php artisan make:task BackupDaily
 ```
 
-It generates a new task `app/Console/Tasks/BackupDaily`.
+It generates a new task located at `app/Console/Tasks/BackupDaily.php`, which can be configured this way:
+
+```php
+<?php
+
+namespace App\Console\Tasks;
+
+use Signifly\SchedulingTasks\TaskContract;
+use Illuminate\Console\Scheduling\Schedule;
+
+class BackupDaily implements TaskContract
+{
+    public function __invoke(Schedule $schedule)
+    {
+        $schedule->command('backup:run')
+            ->daily()
+            ->at('01:00');
+    }
+}
+```
+
+In case you have a task that you want to exclude from getting loaded, it can be achieved like this:
+
+```php
+protected function schedule(Schedule $schedule)
+{
+    TaskLoader::loadFor($schedule, [
+        \App\Console\Tasks\BackupDaily::class,
+    ]);
+
+    // \App\Console\Tasks\BackupDaily::class will not get loaded.
+}
+```
 
 ## Documentation
 Until further documentation is provided, please have a look at the tests.
