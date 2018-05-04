@@ -17,7 +17,7 @@ class TaskLoader
         $this->app = $app;
     }
 
-    public function loadFor(Schedule $schedule)
+    public function loadFor(Schedule $schedule, array $exclude = [])
     {
         $namespace = $this->app->getNamespace();
 
@@ -33,6 +33,10 @@ class TaskLoader
                 ['\\', ''],
                 Str::after($task->getPathname(), app_path().DIRECTORY_SEPARATOR)
             );
+
+            if (in_array($task, $exclude)) {
+                continue;
+            }
 
             if (is_subclass_of($task, TaskContract::class) &&
                 ! (new ReflectionClass($task))->isAbstract()) {
