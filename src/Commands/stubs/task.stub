@@ -2,9 +2,10 @@
 
 namespace DummyNamespace;
 
+use Signifly\SchedulingTasks\TaskContract;
 use Illuminate\Console\Scheduling\Schedule;
 
-class DummyClass
+class DummyClass implements TaskContract
 {
     public function __invoke(Schedule $schedule)
     {
