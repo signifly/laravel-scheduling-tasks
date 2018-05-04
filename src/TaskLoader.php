@@ -23,6 +23,10 @@ class TaskLoader
 
         $path = $this->app->path('Console/Tasks');
 
+        if (! is_dir($path)) {
+            return;
+        }
+
         foreach ((new Finder)->in($path)->files() as $task) {
             $task = $namespace.str_replace(
                 ['/', '.php'],
