@@ -1,0 +1,13 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Console\Scheduling\Schedule;
+
+class DummyClass
+{
+    public function __invoke(Schedule $schedule)
+    {
+        //
+    }
+}
