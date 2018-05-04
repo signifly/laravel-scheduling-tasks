@@ -1,6 +1,6 @@
 # Organize your Laravel scheduling tasks
 
-The `signifly/laravel-scheduling-task` package allows you to easily organize your scheduling tasks and comes with a handy `make:task` command.
+The `signifly/laravel-scheduling-tasks` package allows you to easily organize your scheduling tasks and comes with a handy `make:task` command.
 
 Below is a small example of how to use it.
 
