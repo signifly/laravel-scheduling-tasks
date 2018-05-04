@@ -41,6 +41,7 @@
                 "Signifly\\SchedulingTasks\\SchedulingTasksServiceProvider"
             ],
             "aliases": {
+                "TaskLoader": "Signifly\\SchedulingTasks\\Facades\\TaskLoader"
             }
         }
     }

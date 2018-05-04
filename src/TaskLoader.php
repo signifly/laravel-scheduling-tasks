@@ -3,27 +3,27 @@
 namespace Signifly\SchedulingTasks;
 
 use ReflectionClass;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Contracts\Foundation\Application;
 
 class TaskLoader
 {
-    public static function loadFor($paths, Schedule $schedule)
+    protected $app;
+
+    public function __construct(Application $app)
     {
-        $paths = array_unique(Arr::wrap($paths));
+        $this->app = $app;
+    }
 
-        $paths = array_filter($paths, function ($path) {
-            return is_dir($path);
-        });
+    public function loadFor(Schedule $schedule)
+    {
+        $namespace = $this->app->getNamespace();
 
-        if (empty($paths)) {
-            return;
-        }
+        $path = $this->app->path('Console/Tasks');
 
-        $namespace = app()->getNamespace();
-
-        foreach ((new Finder)->in($paths)->files() as $task) {
+        foreach ((new Finder)->in($path)->files() as $task) {
             $task = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
@@ -32,7 +32,9 @@ class TaskLoader
 
             if (is_subclass_of($task, TaskContract::class) &&
                 ! (new ReflectionClass($task))->isAbstract()) {
-                $task($schedule);
+
+                // Invoke the task
+                (new $task)($schedule);
             }
         }
     }
