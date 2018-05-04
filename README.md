@@ -6,11 +6,11 @@ Below is a small example of how to use it.
 
 ```php
 // Inside the app/Console/Kernel.php file add this
-use Signifly\SchedulingTasks\TaskLoader;
+use Signifly\SchedulingTasks\Facades\TaskLoader;
 
 protected function schedule(Schedule $schedule)
 {
-    TaskLoader::loadFor(__DIR__.'/Tasks', $schedule);
+    TaskLoader::loadFor($schedule);
 }
 ```
 
