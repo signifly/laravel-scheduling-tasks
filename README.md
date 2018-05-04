@@ -17,8 +17,10 @@ protected function schedule(Schedule $schedule)
 In order to make a new task, use the command that comes with the package:
 
 ```bash
-$ php artisan make:task DailyBackupsTask
+$ php artisan make:task BackupDaily
 ```
+
+It generates a new task `app/Console/Tasks/BackupDaily`.
 
 ## Documentation
 Until further documentation is provided, please have a look at the tests.
