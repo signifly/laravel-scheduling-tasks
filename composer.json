@@ -38,6 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
+                "Signifly\\SchedulingTasks\\SchedulingTasksServiceProvider"
             ],
             "aliases": {
             }
