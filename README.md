@@ -54,8 +54,6 @@ protected function schedule(Schedule $schedule)
 }
 ```
 
-## Documentation
-Until further documentation is provided, please have a look at the tests.
 
 ## Installation
 
