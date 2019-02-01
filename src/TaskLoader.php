@@ -27,22 +27,34 @@ class TaskLoader
             return;
         }
 
-        foreach ((new Finder)->in($path)->files() as $task) {
-            $task = $namespace.str_replace(
+        foreach ((new Finder)->in($path)->files() as $taskFile) {
+            $taskClass = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
-                Str::after($task->getPathname(), app_path().DIRECTORY_SEPARATOR)
+                Str::after($taskFile->getPathname(), app_path().DIRECTORY_SEPARATOR)
             );
 
-            if (in_array($task, $exclude)) {
+            if (in_array($taskClass, $exclude)) {
                 continue;
             }
 
-            if (is_subclass_of($task, TaskContract::class) &&
-                ! (new ReflectionClass($task))->isAbstract()) {
+            if (is_subclass_of($taskClass, TaskContract::class) &&
+                ! (new ReflectionClass($taskClass))->isAbstract()) {
 
-                // Invoke the task
-                (new $task)($schedule);
+                $task = new $taskClass;
+
+                // If the task should only run in production
+                // and the application is not in production
+                // then return
+                if (isset($task->onlyInProduction)
+                    && $task->onlyInProduction === true
+                    && !$this->app->environment('production')
+                ) {
+                    return;
+                }
+
+                // Invoke task
+                $task($schedule);
             }
         }
     }
