@@ -1,5 +1,11 @@
 # Organize your Laravel scheduling tasks
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/signifly/laravel-scheduling-tasks.svg?style=flat-square)](https://packagist.org/packages/signifly/laravel-scheduling-tasks)
+[![Build Status](https://img.shields.io/travis/signifly/laravel-scheduling-tasks/master.svg?style=flat-square)](https://travis-ci.org/signifly/laravel-scheduling-tasks)
+[![StyleCI](https://styleci.io/repos/132112236/shield?branch=master)](https://styleci.io/repos/132112236)
+[![Quality Score](https://img.shields.io/scrutinizer/g/signifly/laravel-scheduling-tasks.svg?style=flat-square)](https://scrutinizer-ci.com/g/signifly/laravel-scheduling-tasks)
+[![Total Downloads](https://img.shields.io/packagist/dt/signifly/laravel-scheduling-tasks.svg?style=flat-square)](https://packagist.org/packages/signifly/laravel-scheduling-tasks)
+
 The `signifly/laravel-scheduling-tasks` package allows you to easily organize your scheduling tasks and comes with a handy `make:task` command.
 
 Below is a small example of how to use it.
