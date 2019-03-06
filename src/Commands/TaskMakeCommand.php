@@ -45,6 +45,6 @@ class TaskMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/task.stub';
+        return __DIR__.'/stubs/task.stub';
     }
 }
