@@ -28,22 +28,21 @@ class TaskLoader
         }
 
         foreach ((new Finder)->in($path)->files() as $taskFile) {
-            $taskClass = $namespace.str_replace(
+            $task = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
                 Str::after($taskFile->getPathname(), app_path().DIRECTORY_SEPARATOR)
             );
 
-            if (in_array($taskClass, $exclude)) {
+            if (in_array($task, $exclude)) {
                 continue;
             }
 
-            if (is_subclass_of($taskClass, TaskContract::class) &&
-                ! (new ReflectionClass($taskClass))->isAbstract()) {
-                $task = new $taskClass;
+            if (is_subclass_of($task, TaskContract::class) &&
+                ! (new ReflectionClass($task))->isAbstract()) {
 
                 // Invoke task
-                $task($schedule);
+                (new $task)($schedule);
             }
         }
     }
