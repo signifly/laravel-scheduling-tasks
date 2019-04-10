@@ -49,7 +49,7 @@ class TaskLoader
                     && $task->onlyInProduction === true
                     && ! $this->app->environment('production')
                 ) {
-                    return;
+                    continue;
                 }
 
                 // Invoke task
