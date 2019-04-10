@@ -42,16 +42,6 @@ class TaskLoader
                 ! (new ReflectionClass($taskClass))->isAbstract()) {
                 $task = new $taskClass;
 
-                // If the task should only run in production
-                // and the application is not in production
-                // then return
-                if (isset($task->onlyInProduction)
-                    && $task->onlyInProduction === true
-                    && ! $this->app->environment('production')
-                ) {
-                    continue;
-                }
-
                 // Invoke task
                 $task($schedule);
             }

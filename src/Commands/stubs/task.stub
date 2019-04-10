@@ -7,13 +7,6 @@ use Illuminate\Console\Scheduling\Schedule;
 
 class DummyClass implements TaskContract
 {
-    /**
-     * Determine if the task should only run in production.
-     *
-     * @var bool
-     */
-    public $onlyInProduction = false;
-
     public function __invoke(Schedule $schedule)
     {
         //
