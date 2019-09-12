@@ -5,6 +5,7 @@ namespace Signifly\SchedulingTasks;
 use ReflectionClass;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
+use Signifly\SchedulingTasks\TaskContract;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -23,15 +24,15 @@ class TaskLoader
 
         $path = $this->app->path('Console/Tasks');
 
-        if (! is_dir($path)) {
+        if (!is_dir($path)) {
             return;
         }
 
         foreach ((new Finder)->in($path)->files() as $taskFile) {
-            $task = $namespace.str_replace(
+            $task = $namespace . str_replace(
                 ['/', '.php'],
                 ['\\', ''],
-                Str::after($taskFile->getPathname(), app_path().DIRECTORY_SEPARATOR)
+                Str::after($taskFile->getPathname(), $this->app->path() . DIRECTORY_SEPARATOR)
             );
 
             if (in_array($task, $exclude)) {
@@ -39,10 +40,10 @@ class TaskLoader
             }
 
             if (is_subclass_of($task, TaskContract::class) &&
-                ! (new ReflectionClass($task))->isAbstract()) {
+                !(new ReflectionClass($task))->isAbstract()) {
 
                 // Invoke task
-                (new $task)($schedule);
+                app($task)($schedule);
             }
         }
     }
