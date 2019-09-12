@@ -12,7 +12,7 @@ class SchedulingTasksTest extends TestCase
 {
     protected function mockApp()
     {
-        return $this->instance(Application::class, Mockery::mock(Application::class, function ($mock) {
+        $app = Mockery::mock(Application::class, function ($mock) {
             $mock->shouldReceive('getNamespace')
                 ->once()
                 ->andReturn(__NAMESPACE__.'\\');
@@ -24,7 +24,15 @@ class SchedulingTasksTest extends TestCase
             $mock->shouldReceive('path')
                 ->once()
                 ->andReturn(__DIR__);
-        }));
+        });
+
+        $this->app->instance(Application::class, $app);
+        return $app;
+    }
+
+    protected function mock($abstract, \Closure $mock = null)
+    {
+        return $this->instance($abstract, Mockery::mock(...array_filter(func_get_args())));
     }
 
     /** @test */
