@@ -6,7 +6,6 @@ use Mockery;
 use Illuminate\Foundation\Application;
 use Signifly\SchedulingTasks\TaskLoader;
 use Illuminate\Console\Scheduling\Schedule;
-use Signifly\SchedulingTasks\Test\TestCase;
 use Signifly\SchedulingTasks\Test\Console\Tasks\BackupDaily;
 
 class SchedulingTasksTest extends TestCase
@@ -16,12 +15,12 @@ class SchedulingTasksTest extends TestCase
         return $this->instance(Application::class, Mockery::mock(Application::class, function ($mock) {
             $mock->shouldReceive('getNamespace')
                 ->once()
-                ->andReturn(__NAMESPACE__ . '\\');
+                ->andReturn(__NAMESPACE__.'\\');
 
             $mock->shouldReceive('path')
                 ->with('Console/Tasks')
                 ->once()
-                ->andReturn(__DIR__ . '/Console/Tasks');
+                ->andReturn(__DIR__.'/Console/Tasks');
             $mock->shouldReceive('path')
                 ->once()
                 ->andReturn(__DIR__);
