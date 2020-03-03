@@ -2,11 +2,11 @@
 
 namespace Signifly\SchedulingTasks;
 
-use ReflectionClass;
-use Illuminate\Support\Str;
-use Symfony\Component\Finder\Finder;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Str;
+use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 
 class TaskLoader
 {
