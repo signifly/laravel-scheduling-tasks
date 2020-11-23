@@ -27,6 +27,7 @@ class SchedulingTasksTest extends TestCase
         });
 
         $this->app->instance(Application::class, $app);
+
         return $app;
     }
 
@@ -46,6 +47,7 @@ class SchedulingTasksTest extends TestCase
                 ->__invoke($schedule)
                 ->never();
         });
+
         (new TaskLoader($app))->loadFor($schedule, [BackupDaily::class]);
     }
 
@@ -60,6 +62,7 @@ class SchedulingTasksTest extends TestCase
                 ->__invoke($schedule)
                 ->once();
         });
+
         (new TaskLoader($app))->loadFor($schedule);
     }
 }
