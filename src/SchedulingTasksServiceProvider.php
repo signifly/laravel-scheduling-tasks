@@ -14,7 +14,7 @@ class SchedulingTasksServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->container->runningInConsole()) {
+        if ($this->app->runningInConsole()) {
             $this->commands([
                 TaskMakeCommand::class,
             ]);
@@ -28,10 +28,10 @@ class SchedulingTasksServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(TaskLoader::class, function ($app) {
+        $this->app->singleton(TaskLoader::class, function ($app) {
             return new TaskLoader($app);
         });
 
-        $this->container->alias(TaskLoader::class, 'task-loader');
+        $this->app->alias(TaskLoader::class, 'task-loader');
     }
 }
