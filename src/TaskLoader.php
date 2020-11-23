@@ -31,7 +31,7 @@ class TaskLoader
             $task = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
-                Str::after($taskFile->getPathname(), app_path().DIRECTORY_SEPARATOR)
+                Str::after($taskFile->getPathname(), $this->app->path().DIRECTORY_SEPARATOR)
             );
 
             if (in_array($task, $exclude)) {
@@ -42,7 +42,7 @@ class TaskLoader
                 ! (new ReflectionClass($task))->isAbstract()) {
 
                 // Invoke task
-                (new $task)($schedule);
+                app($task)($schedule);
             }
         }
     }
