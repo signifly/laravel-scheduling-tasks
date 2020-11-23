@@ -2,10 +2,10 @@
 
 namespace Signifly\SchedulingTasks\Test;
 
-use Mockery;
-use Illuminate\Foundation\Application;
-use Signifly\SchedulingTasks\TaskLoader;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Application;
+use Mockery;
+use Signifly\SchedulingTasks\TaskLoader;
 use Signifly\SchedulingTasks\Test\Console\Tasks\BackupDaily;
 
 class SchedulingTasksTest extends TestCase
