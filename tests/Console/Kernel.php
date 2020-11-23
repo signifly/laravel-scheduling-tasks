@@ -3,8 +3,8 @@
 namespace Signifly\SchedulingTasks\Test\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Signifly\SchedulingTasks\Facades\TaskLoader;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Signifly\SchedulingTasks\Facades\TaskLoader;
 
 class Kernel extends ConsoleKernel
 {

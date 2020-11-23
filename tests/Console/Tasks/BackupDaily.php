@@ -2,8 +2,8 @@
 
 namespace Signifly\SchedulingTasks\Test\Console\Tasks;
 
-use Signifly\SchedulingTasks\TaskContract;
 use Illuminate\Console\Scheduling\Schedule;
+use Signifly\SchedulingTasks\TaskContract;
 
 class BackupDaily implements TaskContract
 {
