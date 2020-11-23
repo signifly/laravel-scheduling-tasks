@@ -14,14 +14,14 @@ class TaskLoader
 
     public function __construct(Application $app)
     {
-        $this->app = $app;
+        $this->container = $app;
     }
 
     public function loadFor(Schedule $schedule, array $exclude = [])
     {
-        $namespace = $this->app->getNamespace();
+        $namespace = $this->container->getNamespace();
 
-        $path = $this->app->path('Console/Tasks');
+        $path = $this->container->path('Console/Tasks');
 
         if (! is_dir($path)) {
             return;
